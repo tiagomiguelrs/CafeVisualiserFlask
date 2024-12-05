@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <form action="{{ url_for('add_cafe') }}" method="POST" novalidate>
+        {{ form.csrf_token }}
+
+        <div class="mb-3">
+          {{ form.cafe.label(class_="form-label") }}
+          {{ form.cafe(class_="form-control") }}
+          {% for error in form.cafe.errors: %}
+              <span class="fw-light text-danger">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.location.label(class_="form-label") }}
+          {{ form.location(class_="form-control") }}
+          {% for error in form.location.errors: %}
+              <span class="fw-light text-danger">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.open.label(class_="form-label") }}
+          {{ form.open(class_="form-control") }}
+          {% for error in form.open.errors: %}
+              <span class="fw-light text-danger">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.close.label(class_="form-label") }}
+          {{ form.close(class_="form-control") }}
+          {% for error in form.close.errors: %}
+              <span class="fw-light text-danger">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.coffee.label(class_="form-label") }}
+          <div>
+            {{ form.coffee(class_="form-select") }}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          {{ form.wifi.label(class_="form-label") }}
+          <div>
+            {{ form.wifi(class_="form-select") }}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          {{ form.power.label(class_="form-label") }}
+          <div>
+            {{ form.power(class_="form-select") }}
+          </div>
+        </div>
+
+        <div class="mt-4">
+          {{ form.submit(class_="btn btn-primary") }}
+        </div>
+      </form>
+
+	  <p class="space-above"><a href=" {{ url_for('cafes') }} ">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
